@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://pjix6dl7ecay"]
+
+[ext_resource type="Shader" path="res://assets/shaders/Shell.gdshader" id="1_wh8k5"]
+
+[sub_resource type="Gradient" id="Gradient_dduhn"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.607843, 0.388235, 0, 1, 0.8, 0.293867, 0.216, 1, 0.866667, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_glyum"]
+noise_type = 3
+fractal_octaves = 4
+fractal_lacunarity = 2.35
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cfi1k"]
+width = 256
+height = 256
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_dduhn")
+noise = SubResource("FastNoiseLite_glyum")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wh8k5")
+shader_parameter/albedo_density = 0.2
+shader_parameter/vertex_offset = Vector3(0.075, 0, 0)
+shader_parameter/spiky = false
+shader_parameter/desired_thickness = 1.0
+shader_parameter/distance_bias = 0.715
+shader_parameter/curvature = -0.14
+shader_parameter/droop_dir = Vector3(-2.06132, 0, -2.06132)
+shader_parameter/droop_strength = 0.1
+shader_parameter/min_light = 0.0
+shader_parameter/density = -40.4921
+shader_parameter/attenuation = 1.0
+shader_parameter/color = null
+shader_parameter/layer_dist = 0.33
+shader_parameter/albedo_texture = SubResource("NoiseTexture2D_cfi1k")

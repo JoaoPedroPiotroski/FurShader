@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://clh54xue25yb0"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_hd1vs"]
+
+[sub_resource type="Animation" id="Animation_wmell"]
+resource_name = "a"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hg7la"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_subc0"]
+_data = {
+"RESET": SubResource("Animation_hg7la"),
+"a": SubResource("Animation_wmell")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtlah"]
+
+[sub_resource type="Sky" id="Sky_p2lea"]
+sky_material = SubResource("ProceduralSkyMaterial_xtlah")
+
+[sub_resource type="Environment" id="Environment_pe7wv"]
+background_mode = 2
+sky = SubResource("Sky_p2lea")
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 1.34
+tonemap_white = 6.95
+glow_enabled = true
+glow_bloom = 0.1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission = Color(0.662745, 0.784314, 0.831373, 1)
+volumetric_fog_length = 74.89
+volumetric_fog_detail_spread = 2.82843
+adjustment_enabled = true
+
+[node name="w" type="Node3D"]
+
+[node name="Luca" type="Window" parent="."]
+title = "Luca"
+initial_position = 1
+popup_window = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Luca"]
+mesh = SubResource("PrismMesh_hd1vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Luca"]
+libraries = {
+"": SubResource("AnimationLibrary_subc0")
+}
+autoplay = "a"
+
+[node name="Node3D" type="Node3D" parent="Luca"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Luca/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.83214)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Luca"]
+environment = SubResource("Environment_pe7wv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Luca"]
+transform = Transform3D(1, 0, 0, 0, 0.584221, 0.811594, 0, -0.811594, 0.584221, 0, 0, 0)
+
+[node name="Nois" type="Window" parent="."]
+title = "Nois"
+initial_position = 1
+popup_window = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Nois"]
+transform = Transform3D(1, 0, 0, 0, 0.584221, 0.811594, 0, -0.811594, 0.584221, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Nois"]
+environment = SubResource("Environment_pe7wv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Nois"]
+mesh = SubResource("PrismMesh_hd1vs")
+
+[node name="Node3D" type="Node3D" parent="Nois"]
+
+[node name="Camera3D" type="Camera3D" parent="Nois/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.83214)
+current = true

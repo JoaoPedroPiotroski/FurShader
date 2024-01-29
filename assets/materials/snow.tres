@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cact4olpnqu88"]
+
+[ext_resource type="Shader" path="res://assets/shaders/Shell.gdshader" id="1_ln42r"]
+[ext_resource type="Texture2D" uid="uid://bjvfsbx4gnt7d" path="res://assets/images/snow.png" id="2_0l0to"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ln42r")
+shader_parameter/albedo_density = 0.0
+shader_parameter/vertex_offset = null
+shader_parameter/spiky = true
+shader_parameter/desired_thickness = 2.0
+shader_parameter/distance_bias = 0.86
+shader_parameter/curvature = 1.17
+shader_parameter/droop_dir = Vector3(0.2, -0.115, 0.2)
+shader_parameter/droop_strength = 0.19
+shader_parameter/min_light = 0.05
+shader_parameter/density = 1000.0
+shader_parameter/attenuation = 1.2
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/layer_dist = 0.885
+shader_parameter/albedo_texture = ExtResource("2_0l0to")
